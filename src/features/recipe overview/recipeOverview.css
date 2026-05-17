@@ -1,0 +1,17 @@
+.recipe-overview-container {
+  /* background-image: url('../../assets/recipe_bg.png'); */
+  background-image: url('../../assets/test.webp');
+  background-color: #fcf3ed;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: 45px;
+  background-position-y: 65px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+
+.view-recipe-button {
+  padding: 8px 0;
+  color: #db6544;
+  border-radius: 12px;
+  background-color: #faeae1;
+}

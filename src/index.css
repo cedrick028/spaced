@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent-color: #3B5BDB;
+  --primary-color: #172B36;
+  --secondary-color: #667085;
+  --card-background: #f2f2fc;
+  --border-color: #E5E7EB;
+  --success: #DCFCE7;
+  --warning: #FEF3C7;
+  --error: #FEE2E2;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  line-height: 1em;
+  letter-spacing: 0.02em;
+  color: var(--primary-color);
+  border-color: var(--border-color);
+}
+
+body {
+  background-color: #f8f7fc;
+}
+
+button {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Typography */
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--secondary-color);
+}
+
+.nav-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+.amount {
+  font-size: 24px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.link {
+  color: var(--accent-color);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Layout */
+.container {
+  width: fit-content;
+  margin: 16px;
+}
+
+.card {
+  background-color: var(--card-background);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px;
+}
+
+.card-white {
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px;
+}
+
+.button-shadow {
+  box-shadow: 0 8px 20px rgba(59, 91, 219, 0.18);
+}
