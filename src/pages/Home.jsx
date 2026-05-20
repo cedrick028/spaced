@@ -1,18 +1,17 @@
-import ExpenseOverview from "../features/expense overview/ExpenseOverview";
-import QuickAccess from "../layout/quick access/QuickAccess";
+import BudgetOverview from "../features/overview/budget/BudgetOverview";
+import GroceryOverview from "../features/overview/grocery/GroceryOverview";
+import QuickAccess from "../features/quick access/QuickAccess";
+import Weather from "../features/weather/Weather";
 import Header from "../layout/header/Header";
-import KitchenOverview from "../layout/kitchen overview/KitchenOverview";
-import NotesOverview from "../features/notes overview/NotesOverview";
-
 
 export default function Home() {
   return (
-    <div className="h-[calc(100vh-84px)] overflow-y-auto" >
+    <div>
       <Header />
+      <Weather />
       <QuickAccess />
-      <ExpenseOverview />
-      <KitchenOverview />
-      <NotesOverview />
+      <BudgetOverview />
+      <GroceryOverview />
     </div>
   )
 }

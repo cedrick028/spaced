@@ -41,21 +41,23 @@ button {
 h1 {
   font-size: 32px;
   font-weight: 700;
-}
-
-h2 {
-  font-size: 14px;
-  font-weight: 700;
+  color: var(--primary-color);
 }
 
 p {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
+  color: var(--primary-color);
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .label {
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 500;
   color: var(--secondary-color);
 }
 
@@ -78,25 +80,17 @@ p {
 }
 
 /* Layout */
-.container {
-  width: fit-content;
-  margin: 16px;
-}
-
-.card {
+.card-accent {
   background-color: var(--card-background);
   box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
   border-radius: 12px;
   padding: 16px;
-  margin: 16px;
 }
-
 .card-white {
   background-color: #FFFFFF;
   box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
   border-radius: 12px;
   padding: 16px;
-  margin: 16px;
 }
 
 .button-shadow {

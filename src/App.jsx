@@ -7,7 +7,6 @@ import Expense from "./pages/Expense";
 import Grocery from "./pages/Grocery";
 import Recipe from "./pages/Recipe";
 import Notes from "./pages/Notes";
-import Nav from "./layout/navigation/Nav";
 
 export default function App() {
   // const [todos, setTodos] = useState([])
@@ -45,7 +44,6 @@ export default function App() {
         <Route path="/notes" element={<Notes />} ></Route>
         <Route path="*" element={<Home />} ></Route>
       </Routes>
-      <Nav />
     </BrowserRouter>
       
     </div>

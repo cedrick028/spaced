@@ -1,14 +1,13 @@
-import './header.css';
+import { Menu } from "lucide-react";
 
 export default function Header() {
   return (
-    <div className="m-4 mb-8">
-      <p>Good morning,</p>
-      <div className="flex items-center gap-1 mt-2">
-        <h1 className="user">Cedrick</h1>
-        <p className="text-3xl leading-none">&#128075;</p>
+    <div className="flex justify-between items-start m-4">
+      <div>
+        <p className="title">Good morning,</p>
+        <h1 className="flex items-center gap-2 mt-2">Cedrick<span className="text-2xl">&#x1F44B;</span></h1>
       </div>
-      {/* <p className="label">Here&apos;s your overview for today.</p> */}
+      <Menu size={28} />
     </div>
   )
 }

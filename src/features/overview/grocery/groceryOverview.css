@@ -1,0 +1,6 @@
+.grocery-overview-container {
+  background-image: url('../../../assets/grocery_bg.png');
+  background-position: right;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
