@@ -12,7 +12,7 @@ export default function GroceryOverview() {
         </div>
       </div>
 
-      <button className="w-6/12 py-2 rounded-xl text-[#49ab58] bg-[#f8faf8] border border-[#49ab58] mt-4">View Recipe</button>
+      <button className="w-6/12 py-2 rounded-xl text-[#49ab58] bg-[#f8faf8] border border-[#49ab58] mt-4">View Grocery List</button>
     </div>
   )
 }
