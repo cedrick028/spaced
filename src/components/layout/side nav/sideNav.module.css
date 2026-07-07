@@ -1,0 +1,18 @@
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 16px;
+}
+
+.activeNav div {
+  background-color: var(--dark);
+}
+.activeNav span {
+  font-weight: 500;
+  color: var(--dark);
+  font-weight: 500;
+}
+.activeNav svg {
+  color: var(--dark);
+}
