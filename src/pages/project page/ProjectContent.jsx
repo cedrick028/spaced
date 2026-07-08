@@ -15,7 +15,7 @@ import emptyImg from "../../assets/empty.png"
 
 export default function ProjectContent({ id, createdAt, projectName, description, state, isFavorite }) {
   const { taskList, isLoading } = useTask();
-  const tasksUnderProject = taskList.filter((task) => task.project.toLowerCase().includes(projectName.toLowerCase()))
+  const tasksUnderProject = taskList.filter((task) => task.project.toLowerCase() === projectName.toLowerCase())
   const { isModalOpen, openModal, closeModal } = useModal();
 
   return (
@@ -43,11 +43,14 @@ export default function ProjectContent({ id, createdAt, projectName, description
         </div>
       </div>
 
+    {
+      console.log(tasksUnderProject.length)
+    }
       {
         isLoading ? (
           <CircularProgress size={16} />
         ) : (
-          tasksUnderProject.length ? (
+          tasksUnderProject.length !== 0 ? (
             <Table tableCols={tasktableColumns} dataSource={tasksUnderProject} displayHeader={true} enableSearch={true} enableFilters={["status", "priority"]} />
           ) : (
             <div className="flex flex-col items-center justify-center p-4 rounded-md bg-fair">

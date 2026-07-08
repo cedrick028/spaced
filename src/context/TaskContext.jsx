@@ -34,7 +34,9 @@ const TaskProvider = ({ children }) => {
           status,
           priority,
           due_date,
-          isFavorite
+          created_at,
+          isFavorite,
+          description
         `)
 
       if (error) {
@@ -51,7 +53,9 @@ const TaskProvider = ({ children }) => {
           status: d.status,
           priority: d.priority,
           due_date: d.due_date,
-          isFavorite: d.isFavorite
+          created_at: d.created_at,
+          isFavorite: d.isFavorite,
+          description: d.description
         }
       })
 

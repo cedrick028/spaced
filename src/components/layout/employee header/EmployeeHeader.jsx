@@ -1,32 +1,21 @@
 /* eslint-disable react/prop-types */
-import { FunnelX, Search } from "lucide-react";
+import { FunnelX, Search, UserPlus } from "lucide-react";
 import Input from "../../UI/input/Input";
 import Select from "../../UI/select/Select";
 import { departmentOptions, positionOptions } from "../../../config/selectConfig";
 import Button from "../../UI/button/Button";
-import useEmployee from "../../../hooks/useEmployee";
+import useModal from "../../../hooks/useModal";
+import Modal from "../../UI/modal/Modal";
+import NewUser from "../../UI/forms/new user/NewUser";
 
 export default function EmployeeHeader({ searchValue, onSearchChange, positionValue, onPositionChange, departmentValue, onDeparmentChange, clearFilter }) {
-  const { insertEmployee } = useEmployee();
+  const { isModalOpen, openModal, closeModal } = useModal();
 
-  const handleSubmit = async (data) => {
-    await insertEmployee(data);
-  }
-
-  const newEmployeeData = {
-    first_name: "Cedrick",
-    last_name: "Bayhon",
-    email: "cbayhon@spaced.com",
-    position: "Fullstack Developer",
-    department: "Operations",
-    role: "regular",
-    avatar_url: "null",
-  }
   return (
     <div className="flex items-center justify-between p-2 border rounded-md">
       <div className="flex items-center gap-2">
         <Input placeholder="Search name..." icon={Search} value={searchValue} onChange={onSearchChange} />
-        <Button label="New User" variant="primary" onClick={() => handleSubmit(newEmployeeData)} />
+        <Button label="New User" variant="primary" onClick={openModal} />
       </div>
       <div className="flex items-center gap-2">
         <Select placeholder="Position" options={positionOptions} value={positionValue} onChange={onPositionChange} />
@@ -35,6 +24,14 @@ export default function EmployeeHeader({ searchValue, onSearchChange, positionVa
           <FunnelX size={16} />
         </div>
       </div>
+
+      {
+        isModalOpen && (
+          <Modal label="New User" icon={UserPlus} closeModal={closeModal}>
+            <NewUser closeModal={closeModal} />
+          </Modal>
+        )
+      }
     </div>
   )
 }

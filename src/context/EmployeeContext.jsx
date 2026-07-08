@@ -30,7 +30,7 @@ const EmployeeProvider = ({ children }) => {
   }
 
   const insertEmployee = async (newEmployee) => {
-
+    setIsLoading(true)
     try {
       const { data, error } = await supabase
         .from("employees")
@@ -44,11 +44,12 @@ const EmployeeProvider = ({ children }) => {
       const insertedEmployee = data?.[0];
 
       if (insertedEmployee) {
-        console.log(data)
         setEmployeeList((prev) => [...prev, insertedEmployee])
       }
     } catch (error) {
       console.log(error)
+    } finally {
+      setIsLoading(false)
     }
     
   }

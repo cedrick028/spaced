@@ -3,6 +3,8 @@ import TaskHeader from "../../components/layout/task header/TaskHeader";
 import Task from "../../components/layout/task/Task";
 import useTask from "../../hooks/useTask"
 import { CircularProgress } from "@mui/material";
+import useTaskModal from "../../hooks/useTaskModal";
+import TaskModal from "../../components/UI/modal/TaskModal";
 
 export default function TaskPage() {
   const { taskList, isLoading } = useTask();
@@ -13,6 +15,8 @@ export default function TaskPage() {
   const [variantAll, setVariantAll] = useState("primary");
   const [variantFavorite, setVariantFavorite] = useState("secondary");
   const [showFavorite, setShowFavorite] = useState(false)
+
+  const { isTaskModalOpen, openTaskModal, closeTaskModal, taskId } = useTaskModal();
 
   const filteredData = taskList.filter((task) => {
     const searchedData = task.task_name.toLowerCase().includes(search.toLowerCase())
@@ -87,10 +91,17 @@ export default function TaskPage() {
                   assigneeFN={task.assignee.split(" ")[0]} 
                   assigneeLN={task.assignee.split(" ")[1]}
                   isFavorite={task.isFavorite}
+                  getTask={() => openTaskModal(task.id)}
                 />
               ))
             }
           </div>
+        )
+      }
+
+      {
+        isTaskModalOpen && (
+          <TaskModal closeTaskModal={closeTaskModal} taskId={taskId} />
         )
       }
     </div>

@@ -21,6 +21,7 @@ export default function NewTask({ closeModal }) {
     try {
       await insertTask(data);
       setNewTask({task_name: "", assignee: "", status: "", priority: "", description: "", project: id})
+      closeModal();
     } catch (error) {
       throw new  error
     } finally {
