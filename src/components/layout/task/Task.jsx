@@ -7,8 +7,8 @@ import Favorite from "../../UI/favorite/Favorite";
 export default function Task({ id, assignee, assigneeFN, assigneeLN, taskName, isFavorite, getTask }) {
 
   return (
-    <div className="flex items-center justify-between p-2 border rounded-md cursor-pointer hover:bg-shade" onClick={getTask}>
-      <div className="flex items-center">
+    <div className="flex items-center justify-between p-2 border rounded-md cursor-pointer hover:bg-shade">
+      <div className="flex items-center flex-1" onClick={getTask}>
         <div className="w-12">
           <div className="w-7 h-7 flex items-center justify-center border rounded-md bg-fair">
             <StickyNote size={16} />

@@ -54,6 +54,24 @@ const EmployeeProvider = ({ children }) => {
     
   }
 
+  const deleteEmployee = async (id) => {
+    try {
+      console.log("delete context:", id)
+      const { error } = await supabase
+        .from("employees")
+        .delete()
+        .eq("id", id)
+
+      if (error) {
+        throw error;
+      }
+
+      setEmployeeList(employeeList.filter((employee) => employee.id !== id))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   // Mock API Call
   // useEffect(() => {
   //   setEmployeeList(employeeDataMock)
@@ -64,7 +82,7 @@ const EmployeeProvider = ({ children }) => {
   }, [])
 
   return (
-    <EmployeeContext.Provider value={{ employeeList, isLoading, fetchEmployees, insertEmployee }} >
+    <EmployeeContext.Provider value={{ employeeList, isLoading, fetchEmployees, insertEmployee, deleteEmployee }} >
       { children }
     </EmployeeContext.Provider>
   )

@@ -79,6 +79,23 @@ const ProjectProvider = ({ children }) => {
     }
   }
 
+  const deleteProject = async (id) => {
+    try{
+      const { error } = await supabase
+        .from("projects")
+        .delete()
+        .eq("id", id)
+
+      if (error) {
+        throw error
+      }
+
+      setProjectList(projectList.filter((proj) => proj.id !== id))
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     fetchProjects();
   }, [])
@@ -89,7 +106,7 @@ const ProjectProvider = ({ children }) => {
   // }, [])
 
   return (
-    <ProjectContext.Provider value={{ projectList, isLoading, insertProject, updateProjectFavorite }} >
+    <ProjectContext.Provider value={{ projectList, isLoading, insertProject, updateProjectFavorite, deleteProject }} >
       { children }
     </ProjectContext.Provider>
   )

@@ -12,11 +12,21 @@ import NewTask from "../../components/UI/forms/new task/NewTask";
 import Modal from "../../components/UI/modal/Modal";
 import useModal from "../../hooks/useModal";
 import emptyImg from "../../assets/empty.png"
+import useProject from "../../hooks/useProject";
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectContent({ id, createdAt, projectName, description, state, isFavorite }) {
-  const { taskList, isLoading } = useTask();
+  const { taskList, isLoading, deleteTasksByProjectName } = useTask();
   const tasksUnderProject = taskList.filter((task) => task.project.toLowerCase() === projectName.toLowerCase())
   const { isModalOpen, openModal, closeModal } = useModal();
+  const { deleteProject } = useProject();
+  const navigate = useNavigate();
+
+  const handleDelete = async () => {
+    deleteTasksByProjectName(projectName);
+    navigate("/spaced/admin/projects")
+    await deleteProject(id)
+  }
 
   return (
     <div>
@@ -27,7 +37,6 @@ export default function ProjectContent({ id, createdAt, projectName, description
           <Favorite isFavorite={isFavorite} id={id} table="projects" />
         </div>
         <div className="flex gap-2">
-          <Button label="Delete" variant="secondary" />
           <Button label="New Task" variant="primary" onClick={openModal} />
         </div>
       </div>
@@ -43,9 +52,6 @@ export default function ProjectContent({ id, createdAt, projectName, description
         </div>
       </div>
 
-    {
-      console.log(tasksUnderProject.length)
-    }
       {
         isLoading ? (
           <CircularProgress size={16} />
@@ -60,6 +66,11 @@ export default function ProjectContent({ id, createdAt, projectName, description
           )
         )
       }
+
+      <div className="flex justify-end gap-2 mt-4">
+        <Button label="Delete" variant="delete" onClick={handleDelete} />
+        <Button label="Update" variant="secondary" />
+      </div>
 
       {
         isModalOpen && (

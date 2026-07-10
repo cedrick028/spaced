@@ -44,12 +44,12 @@ export default function TeamPage() {
             />
             
             <div className="h-7 flex items-center px-2 border rounded-md bg-fair">
-              <p className="w-2/12 font-medium text-dark">Name</p>
-              <p className="w-2/12 font-medium text-dark">ID</p>
-              <p className="w-3/12 font-medium text-dark">Email</p>
-              <p className="w-2/12 font-medium text-dark">Position</p>
-              <p className="w-2/12 font-medium text-dark">Department</p>
-              <p className="w-1/12 font-medium text-dark">Role</p>
+              <p className="w-[18%] font-medium text-dark">Name</p>
+              <p className="w-[15%] font-medium text-dark">ID</p>
+              <p className="w-[22%] font-medium text-dark">Email</p>
+              <p className="w-[15%] font-medium text-dark">Position</p>
+              <p className="w-[15%] font-medium text-dark">Department</p>
+              <p className="w-[15%] font-medium text-dark">Action</p>
             </div>
             
             {

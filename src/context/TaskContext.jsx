@@ -125,12 +125,39 @@ const TaskProvider = ({ children }) => {
     }
   }
 
+  const deleteTask = async (id) => {
+    try {
+      const { error } = await supabase  
+        .from("tasks")
+        .delete()
+        .eq("id", id)
+
+      if (error) {
+        throw error
+      }
+
+      setTaskList(taskList.filter((prev) => prev.id !== id))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const deleteTasksByProjectName = (projectName) => {
+    setTaskList((prev) =>
+      prev.filter((task) => task.project.toLowerCase() !== projectName.toLowerCase())
+    )
+  }
+
+  const deleteTasksByEmployeeName = (assignee) => {
+    setTaskList((prev) => prev.filter((task) => task.assignee.toLowerCase() !== assignee.toLowerCase()))
+  }
+
   useEffect(() => {
     fetchTask()
   }, [])
 
   return (
-    <TaskContext.Provider value={{ taskList, isLoading, insertTask, updateTaskFavorite }} >
+    <TaskContext.Provider value={{ taskList, isLoading, insertTask, updateTaskFavorite, deleteTask, deleteTasksByProjectName, deleteTasksByEmployeeName }} >
       { children }
     </TaskContext.Provider>
   )
