@@ -96,6 +96,35 @@ const ProjectProvider = ({ children }) => {
     }
   }
 
+  const updateProject = async (id, details) => {
+    setIsLoading(true)
+    try {
+      const { data, error } = await supabase
+        .from("projects")
+        .update(details)
+        .eq("id", id)
+        .select()
+
+      if (error) {
+        throw error
+      }
+
+      const updatedProject = data?.[0]
+
+      if (updatedProject) {
+        setProjectList((prev) =>
+          prev.map((project) =>
+            project.id === id ? updatedProject : project
+          )
+        )
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   useEffect(() => {
     fetchProjects();
   }, [])
@@ -106,7 +135,7 @@ const ProjectProvider = ({ children }) => {
   // }, [])
 
   return (
-    <ProjectContext.Provider value={{ projectList, isLoading, insertProject, updateProjectFavorite, deleteProject }} >
+    <ProjectContext.Provider value={{ projectList, isLoading, insertProject, updateProjectFavorite, deleteProject, updateProject }} >
       { children }
     </ProjectContext.Provider>
   )

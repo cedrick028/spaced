@@ -9,6 +9,7 @@ import { formatDate } from "../../utils/dateFormatter";
 import { Calendar, Folder, StickyNotePlus, User } from "lucide-react";
 import Favorite from "../../components/UI/favorite/Favorite";
 import NewTask from "../../components/UI/forms/new task/NewTask";
+import UpdateProject from "../../components/UI/forms/update project/UpdateProject";
 import Modal from "../../components/UI/modal/Modal";
 import useModal from "../../hooks/useModal";
 import emptyImg from "../../assets/empty.png"
@@ -18,7 +19,8 @@ import { useNavigate } from "react-router-dom";
 export default function ProjectContent({ id, createdAt, projectName, description, state, isFavorite }) {
   const { taskList, isLoading, deleteTasksByProjectName } = useTask();
   const tasksUnderProject = taskList.filter((task) => task.project.toLowerCase() === projectName.toLowerCase())
-  const { isModalOpen, openModal, closeModal } = useModal();
+  const { isModalOpen: isNewTaskOpen, openModal: openNewTaskModal, closeModal: closeNewTaskModal } = useModal();
+  const { isModalOpen: isUpdateProjectOpen, openModal: openUpdateProjectModal, closeModal: closeUpdateProjectModal } = useModal();
   const { deleteProject } = useProject();
   const navigate = useNavigate();
 
@@ -37,7 +39,7 @@ export default function ProjectContent({ id, createdAt, projectName, description
           <Favorite isFavorite={isFavorite} id={id} table="projects" />
         </div>
         <div className="flex gap-2">
-          <Button label="New Task" variant="primary" onClick={openModal} />
+          <Button label="New Task" variant="primary" onClick={openNewTaskModal} />
         </div>
       </div>
 
@@ -69,13 +71,21 @@ export default function ProjectContent({ id, createdAt, projectName, description
 
       <div className="flex justify-end gap-2 mt-4">
         <Button label="Delete" variant="delete" onClick={handleDelete} />
-        <Button label="Update" variant="secondary" />
+        <Button label="Update" variant="secondary" onClick={openUpdateProjectModal} />
       </div>
 
       {
-        isModalOpen && (
-          <Modal icon={StickyNotePlus} label="New Task" closeModal={closeModal}>
-            <NewTask closeModal={closeModal} />
+        isNewTaskOpen && (
+          <Modal icon={StickyNotePlus} label="New Task" closeModal={closeNewTaskModal}>
+            <NewTask closeModal={closeNewTaskModal} />
+          </Modal>
+        )
+      }
+
+      {
+        isUpdateProjectOpen && (
+          <Modal icon={Folder} label="Update Project" closeModal={closeUpdateProjectModal}>
+            <UpdateProject closeModal={closeUpdateProjectModal} selectedProjectId={id} />
           </Modal>
         )
       }

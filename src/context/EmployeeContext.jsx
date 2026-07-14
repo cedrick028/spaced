@@ -72,6 +72,35 @@ const EmployeeProvider = ({ children }) => {
     }
   }
 
+  const updateEmployee = async (id, details) => {
+    setIsLoading(true)
+    try {
+      const { data, error } = await supabase
+        .from("employees")
+        .update(details)
+        .select()
+        .eq("id", id)
+
+      if (error) {
+        throw error
+      }
+
+      const updatedEmployeeData = data?.[0]; // connected to line 14 in TeamPage.jsx
+
+      if (updatedEmployeeData) {
+        setEmployeeList((prev) =>
+          prev.map((employee) =>
+            employee.id === id ? updatedEmployeeData : employee
+          )
+        )
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   // Mock API Call
   // useEffect(() => {
   //   setEmployeeList(employeeDataMock)
@@ -82,7 +111,7 @@ const EmployeeProvider = ({ children }) => {
   }, [])
 
   return (
-    <EmployeeContext.Provider value={{ employeeList, isLoading, fetchEmployees, insertEmployee, deleteEmployee }} >
+    <EmployeeContext.Provider value={{ employeeList, isLoading, fetchEmployees, insertEmployee, deleteEmployee, updateEmployee }} >
       { children }
     </EmployeeContext.Provider>
   )

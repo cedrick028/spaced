@@ -1,13 +1,18 @@
+import { UserPen } from "lucide-react";
 import useEmployee from "../../../hooks/useEmployee";
+import useModal from "../../../hooks/useModal";
 import useTask from "../../../hooks/useTask";
 import { generateIcon } from "../../../utils/iconFormatter";
 import { trimId } from "../../../utils/idFormatter";
 import Button from "../../UI/button/Button";
+import UpdateUser from "../../UI/forms/update user/UpdateUser";
+import Modal from "../../UI/modal/Modal";
 
 /* eslint-disable react/prop-types */
 export default function Employee({ fName, lName, id, email, position, department }) {
   const { deleteEmployee } = useEmployee();
   const { deleteTasksByEmployeeName } = useTask();
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   const handleDelete = async () => {
     await deleteTasksByEmployeeName(fName.concat(` ${lName}`))
@@ -25,9 +30,17 @@ export default function Employee({ fName, lName, id, email, position, department
       <p className="w-[15%]">{ position }</p>
       <p className="w-[15%]">{ department }</p>
       <div className="w-[15%] flex justify-end gap-2">
-        <Button label="Update" variant="secondary" />
+        <Button label="Update" variant="secondary" onClick={openModal} />
         <Button label="Delete" variant="delete" onClick={handleDelete} />
       </div>
+
+      {
+        isModalOpen && (
+          <Modal label="Update User" icon={UserPen} closeModal={closeModal}>
+            <UpdateUser closeModal={closeModal} selectedUserId={id} />
+          </Modal>
+        )
+      }
     </div>
   )
 }

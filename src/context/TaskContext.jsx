@@ -24,6 +24,8 @@ const TaskProvider = ({ children }) => {
         .select(`
           id,
           task_name,
+          project,
+          assignee,
           projects(
             project_name
           ),
@@ -49,7 +51,9 @@ const TaskProvider = ({ children }) => {
           id: d.id,
           task_name: d.task_name,
           project: d.projects?.project_name ?? '-',
+          project_id: d.project,
           assignee: `${d.employees?.first_name} ${d.employees?.last_name}` ?? '-',
+          assignee_id: d.assignee,
           status: d.status,
           priority: d.priority,
           due_date: d.due_date,
@@ -142,6 +146,37 @@ const TaskProvider = ({ children }) => {
     }
   }
 
+  const updateTask = async (id, details) => {
+    setIsLoading(true)
+    try {
+      const payload = { ...details }
+
+      // Keep existing DB values when optional foreign keys are not selected in the form.
+      if (!payload.assignee) {
+        delete payload.assignee
+      }
+
+      if (!payload.project) {
+        delete payload.project
+      }
+
+      const { error } = await supabase
+        .from("tasks")
+        .update(payload)
+        .eq("id", id)
+
+      if (error) {
+        throw error
+      }
+
+      await fetchTask()
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const deleteTasksByProjectName = (projectName) => {
     setTaskList((prev) =>
       prev.filter((task) => task.project.toLowerCase() !== projectName.toLowerCase())
@@ -157,7 +192,7 @@ const TaskProvider = ({ children }) => {
   }, [])
 
   return (
-    <TaskContext.Provider value={{ taskList, isLoading, insertTask, updateTaskFavorite, deleteTask, deleteTasksByProjectName, deleteTasksByEmployeeName }} >
+    <TaskContext.Provider value={{ taskList, isLoading, fetchTask, insertTask, updateTaskFavorite, deleteTask, updateTask, deleteTasksByProjectName, deleteTasksByEmployeeName }} >
       { children }
     </TaskContext.Provider>
   )

@@ -1,15 +1,19 @@
 /* eslint-disable react/prop-types */
 
 import { Calendar, Folder, StickyNote, X } from "lucide-react";
+import useModal from "../../../hooks/useModal";
 import useTask from "../../../hooks/useTask";
 import { formatDate } from "../../../utils/dateFormatter";
 import { generateIcon } from "../../../utils/iconFormatter";
 import Button from "../button/Button";
+import UpdateTask from "../forms/update task/UpdateTask";
+import Modal from "./Modal";
 import StatusBadge from "../../layout/badge/StatusBadge";
 import PriorityBadge from "../../layout/badge/PriorityBadge";
 
 export default function TaskModal({ closeTaskModal, taskId }) {
   const { taskList, deleteTask } = useTask();
+  const { isModalOpen, openModal, closeModal } = useModal();
   const displayTask = taskList.find((task) => task.id === taskId); 
 
   const handleDelete = async () => {
@@ -69,10 +73,21 @@ export default function TaskModal({ closeTaskModal, taskId }) {
 
         <div className="flex justify-end gap-2 p-4 border-t">
           <Button label="Delete" variant="delete" onClick={handleDelete} />
-          <Button label="Update" variant="secondary" />
+          <Button label="Update" variant="secondary" onClick={openModal} />
         </div>
         
       </div>
+
+      {
+        isModalOpen && (
+          <Modal icon={StickyNote} label="Update Task" closeModal={closeModal}>
+            <UpdateTask closeModal={() => {
+              closeModal();
+              closeTaskModal();
+            }} selectedTaskId={taskId} />
+          </Modal>
+        )
+      }
     </div>
   )
 }
