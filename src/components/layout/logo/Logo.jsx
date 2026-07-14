@@ -5,7 +5,7 @@ export default function Logo() {
   const navigate = useNavigate();
 
   return (
-    <div className="h-14 flex items-center gap-2 px-4 border-b">
+    <div className="h-14 flex items-center justify-between gap-2 px-4 border-b lg:justify-start">
       <div className="w-7 h-7 flex items-center justify-center rounded-md bg-dark cursor-pointer" onClick={() => navigate('dashboard')}>
         <Orbit size={16} color="white" />
       </div>

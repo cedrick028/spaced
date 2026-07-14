@@ -12,17 +12,17 @@ export default function TaskHeader({ value, onSearchChange, onClearFilter, assig
   const { taskList } = useTask();
 
   return (
-    <div className="flex items-center justify-between p-2 border rounded-md mb-2">
-      <div className="flex items-center gap-2">
-        <Button label={`All (${taskList.length})`} variant={variantAll} onClick={showAll} />
-        <Button label="Favorites" variant={variantFavorite} onClick={showFavorite} />
+    <div className="mb-2 flex flex-col gap-3 rounded-md border p-2 xl:flex-row xl:items-center xl:justify-between">
+      <div className="flex flex-wrap items-center gap-2">
+        <Button label={`All (${taskList.length})`} variant={variantAll} onClick={showAll} className="w-full sm:w-auto" />
+        <Button label="Favorites" variant={variantFavorite} onClick={showFavorite} className="w-full sm:w-auto" />
       </div>
-      <div className="flex items-center gap-2">
-        <Input placeholder="Search task..." icon={Search} value={value} onChange={onSearchChange} />
-        <Select placeholder="Assignee" options={assigneeOptions(employeeList)} value={assigneeValue} onChange={onAssigneeChange} />
-        <Select placeholder="Status" options={statusOptions} value={statusValue} onChange={onStatusChange} />
-        <Select placeholder="Priority" options={priorityOptions} value={priorityValue} onChange={onPriorityChange} />
-        <div className="w-7 h-7 flex items-center justify-center border rounded-md bg-fair" onClick={onClearFilter}>
+      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+        <Input placeholder="Search task..." icon={Search} value={value} onChange={onSearchChange} className="sm:w-[250px]" />
+        <Select placeholder="Assignee" options={assigneeOptions(employeeList)} value={assigneeValue} onChange={onAssigneeChange} className="sm:w-[180px]" />
+        <Select placeholder="Status" options={statusOptions} value={statusValue} onChange={onStatusChange} className="sm:w-[160px]" />
+        <Select placeholder="Priority" options={priorityOptions} value={priorityValue} onChange={onPriorityChange} className="sm:w-[160px]" />
+        <div className="w-7 h-7 flex items-center justify-center self-start rounded-md border bg-fair sm:self-auto" onClick={onClearFilter}>
           <FunnelX size={16} />
         </div>
       </div>

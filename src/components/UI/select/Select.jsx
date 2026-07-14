@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-export default function Select({ placeholder, options, value, onChange }) {
+export default function Select({ placeholder, options, value, onChange, className }) {
   return (
-    <div className="h-7 flex items-center px-2 border rounded-md bg-white">
-      <select value={value} onChange={onChange}>
+    <div className={`h-7 w-full min-w-0 flex items-center rounded-md border bg-white px-2 ${className ?? ""}`}>
+      <select value={value} onChange={onChange} className="w-full min-w-0 bg-transparent outline-none">
         <option hidden value="">{ value ? value : placeholder }</option>
         {
           options.map((o) => (

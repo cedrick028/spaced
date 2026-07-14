@@ -17,7 +17,7 @@ export default function ProjectDetails() {
           <CircularProgress size={16} />
         ) : (
           <>
-            <div className="h-7 flex items-center gap-2 px-2 border rounded-md bg-fair mb-4">
+            <div className="min-h-7 flex flex-wrap items-center gap-2 rounded-md border bg-fair px-2 py-1 mb-4">
               <div className="bg-white border rounded-md">
                 <ChevronLeft size={16} className="cursor-pointer" onClick={() => navigate(`/spaced/${role}/projects`)} />
               </div>

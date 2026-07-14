@@ -10,9 +10,9 @@ export default function StatusBadge({ data }) {
     rejected: "bg-[#FCA5A5]"
   }
   return (
-    <div className="flex items-center gap-2 text-gray-500">
+    <div className="inline-flex items-center gap-2 whitespace-nowrap text-gray-500">
       <div className={`w-2 h-2 rounded-sm ${badgeColor[data.replace(/\s/g, '').toLowerCase()]}`}></div>
-      <p>{ formatString(data) }</p>
+      <p className="text-sm">{ formatString(data) }</p>
     </div>
   )
 }

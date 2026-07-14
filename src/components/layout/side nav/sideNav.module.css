@@ -5,6 +5,23 @@
   padding: 4px 16px;
 }
 
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  min-height: 40px;
+  padding: 4px 16px;
+  border-radius: 8px;
+  color: var(--gray);
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav:hover {
+  background-color: var(--fair);
+}
+
 .activeNav div {
   background-color: var(--dark);
 }

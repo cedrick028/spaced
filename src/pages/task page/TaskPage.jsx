@@ -73,13 +73,12 @@ export default function TaskPage() {
           <CircularProgress size={16} />
         ) : (
           <div className="flex flex-col gap-2">
-            <div className="h-7 flex items-center justify-between px-2 border rounded-md bg-fair">
-              <div className="flex items-center">
-                <p className="w-28 ml-12 text-dark font-medium">ID</p>
-                <p className="w-40 text-dark font-medium">Assignee</p>
-                <p className="w-72 text-dark font-medium">Task Name</p>
-              </div>
-              <p className="w-12 text-dark font-medium text-center">Favorite</p>
+            <div className="hidden h-7 items-center rounded-md border bg-fair px-2 md:grid md:grid-cols-[3rem_7rem_10rem_minmax(0,1fr)_3rem] md:gap-2">
+              <div></div>
+              <p className="text-dark font-medium">ID</p>
+              <p className="text-dark font-medium">Assignee</p>
+              <p className="min-w-0 text-dark font-medium">Task Name</p>
+              <p className="text-dark font-medium text-center">Favorite</p>
             </div>
             {
               filteredData.map((task) => (

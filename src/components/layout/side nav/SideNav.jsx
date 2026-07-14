@@ -5,7 +5,7 @@ import styles from "./sideNav.module.css"
 export default function SideNav() {
   const { sideNav } = useNav()
   return (
-    <div className="flex flex-col gap-2 p-4">
+    <div className="flex gap-2 overflow-x-auto px-4 py-3 lg:flex-col lg:overflow-visible lg:p-4">
       {
         sideNav.map((nav) => (
           <NavLink key={nav.label} to={nav.to} className={ ({ isActive }) => isActive ? `${styles.activeNav} ${styles.nav}` : styles.nav }>

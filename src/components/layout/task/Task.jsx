@@ -7,28 +7,28 @@ import Favorite from "../../UI/favorite/Favorite";
 export default function Task({ id, assignee, assigneeFN, assigneeLN, taskName, isFavorite, getTask }) {
 
   return (
-    <div className="flex items-center justify-between p-2 border rounded-md cursor-pointer hover:bg-shade">
-      <div className="flex items-center flex-1" onClick={getTask}>
-        <div className="w-12">
+    <div className="flex flex-col gap-3 rounded-md border p-2 cursor-pointer hover:bg-shade md:grid md:grid-cols-[3rem_7rem_10rem_minmax(0,1fr)_3rem] md:items-center md:gap-2">
+      <div className="flex flex-1 flex-col gap-3 md:contents" onClick={getTask}>
+        <div className="flex items-center gap-3 md:justify-center">
           <div className="w-7 h-7 flex items-center justify-center border rounded-md bg-fair">
             <StickyNote size={16} />
           </div>
         </div>
 
-        <p className="w-28">ID: {trimId(id, '-', 0)}</p>
+        <p className="min-w-0 md:truncate">ID: {trimId(id, '-', 0)}</p>
 
-        <div className="w-40 flex items-center gap-2">
+        <div className="flex items-center gap-2 min-w-0">
           <div className="h-7 w-7 flex items-center justify-center border rounded-md bg-fair">
             <p className="text-dark font-medium">{ generateIcon(assigneeFN, assigneeLN) }</p>
           </div>
-          <p>{ assignee }</p>
+          <p className="min-w-0 truncate">{ assignee }</p>
         </div>
 
-        <p className="w-72">{ taskName }</p>
+        <p className="min-w-0 break-words md:truncate">{ taskName }</p>
       </div>
       
 
-      <div className="w-12 flex justify-center">
+      <div className="flex justify-end md:justify-center">
         <div className="w-7 h-7 flex items-center justify-center border rounded-md">
           <Favorite isFavorite={isFavorite} id={id} table="tasks" />
         </div>

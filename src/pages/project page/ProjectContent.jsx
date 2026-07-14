@@ -32,19 +32,19 @@ export default function ProjectContent({ id, createdAt, projectName, description
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap items-center gap-2">
           <p className="font-bold text-[15px] text-dark">{ projectName }</p>
           <StateBadge state={state} />
           <Favorite isFavorite={isFavorite} id={id} table="projects" />
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 sm:justify-end">
           <Button label="New Task" variant="primary" onClick={openNewTaskModal} />
         </div>
       </div>
 
 
-      <div className="my-4">
+      <div className="my-4 grid gap-2">
         <p className="flex items-center gap-2"><Folder size={16} /><span>{id}</span></p>
         <p className="flex items-center gap-2"><Calendar size={16} /><span>{formatDate(createdAt, "date")}</span></p>
         <p className="flex items-center gap-2"><User size={16} className="-mt-0.5" /><span>Admin</span></p>
@@ -69,7 +69,7 @@ export default function ProjectContent({ id, createdAt, projectName, description
         )
       }
 
-      <div className="flex justify-end gap-2 mt-4">
+      <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:justify-end">
         <Button label="Delete" variant="delete" onClick={handleDelete} />
         <Button label="Update" variant="secondary" onClick={openUpdateProjectModal} />
       </div>

@@ -9,9 +9,9 @@ export default function PriorityBadge({ data }) {
     urgent: "bg-dark",
   }
   return (
-    <div className="w-fit flex items-center gap-2">
+    <div className="inline-flex w-fit items-center gap-2 whitespace-nowrap">
       <div className={`w-2 h-2 rounded-sm ${badgeColor[data.toLowerCase()]}`} />
-      <p className="w-12">
+      <p className="w-fit text-sm">
         { formatString(data) }
       </p>
     </div>

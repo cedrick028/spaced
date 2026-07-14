@@ -74,7 +74,7 @@ export default function ProjectPage() {
           <CircularProgress size={16} />
         ) : (
           <div className="flex flex-col gap-2">
-            <div className="h-7 flex items-center px-2 border rounded-md bg-fair">
+            <div className="hidden h-7 items-center rounded-md border bg-fair px-2 md:flex">
               <p className="w-28 font-medium text-dark ml-12">ID</p>
               <p className="w-28 font-medium text-dark">Created</p>
               <p className="flex-1 font-medium text-dark">Project Name</p>

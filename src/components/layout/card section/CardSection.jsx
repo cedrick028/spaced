@@ -22,7 +22,7 @@ export default function CardSection() {
   }
   
   return (
-    <div className="flex gap-4 mb-4">
+    <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
       {
         cardData.map((card) => (
           <Card key={card.label} label={card.label} icon={card.icon} data={getDataValue(card.label)} />

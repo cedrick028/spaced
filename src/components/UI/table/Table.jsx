@@ -54,7 +54,7 @@ export default function Table({ tableCols, dataSource, displayHeader = false, en
   }
 
   return (
-    <div className="p-2 border rounded-md">
+    <div className="rounded-md border p-2">
       {
         displayHeader && (
           <TableHeader 
@@ -79,13 +79,13 @@ export default function Table({ tableCols, dataSource, displayHeader = false, en
         )
       }
       
-      <div className="border rounded-md overflow-hidden">
-        <table className="w-full table-auto">
+      <div className="overflow-x-auto rounded-md border">
+        <table className="min-w-[720px] w-full table-fixed">
           <thead className="h-7 border-b bg-fair">
             <tr>
               {
                 tableCols.map((col) => (
-                  <th key={col.dbCol} className="text-dark text-left px-2">{ col.label }</th>
+                  <th key={col.dbCol} className="overflow-hidden px-2 text-left text-dark text-ellipsis whitespace-nowrap">{ col.label }</th>
                 ))
               }
             </tr>
@@ -97,7 +97,7 @@ export default function Table({ tableCols, dataSource, displayHeader = false, en
                 <tr key={data.id} className="divide-x">
                   {
                     tableCols.map((cols) => (
-                      <td key={cols.dbCol} className="px-2 py-1 truncate">
+                        <td key={cols.dbCol} className="overflow-hidden px-2 py-1 text-ellipsis whitespace-nowrap">
                         { 
                           formatData(cols.dbCol, data[cols.dbCol])
                         }

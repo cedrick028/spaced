@@ -8,7 +8,7 @@ export default function StateBadge({ state }) {
     closed: "bg-[orange]",
   }
   return (
-    <div className="min-w-[72px] h-7 flex items-center gap-2 px-2 border rounded-md">
+    <div className="inline-flex h-7 w-fit items-center gap-2 rounded-md border px-2 text-sm whitespace-nowrap">
       <div className={`w-1.5 h-1.5 rounded-full ${badgeColor[state.toLowerCase()]}`}></div>
       <p>{ formatString(state)}</p>
     </div>
